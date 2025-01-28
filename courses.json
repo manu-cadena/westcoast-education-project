@@ -1,0 +1,138 @@
+{
+  "courses": [
+    {
+      "id": 1,
+      "title": "Introduction to Web Development",
+      "courseNumber": "WEB101",
+      "duration": "1 week",
+      "availability": "Classroom & Distance",
+      "image": "https://images.unsplash.com/photo-1565106430482-8f6e74349ca1?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8V2ViJTIwRGV2ZWxvcG1lbnR8ZW58MHx8MHx8fDI%3D",
+      "dates": "2024-02-01",
+      "popular": true,
+      "description": "Learn the basics of HTML, CSS, and JavaScript to build your first website."
+    },
+    {
+      "id": 2,
+      "title": "Advanced JavaScript",
+      "courseNumber": "JS201",
+      "duration": "2 weeks",
+      "availability": "Distance",
+      "image": "https://images.unsplash.com/photo-1583484963886-cfe2bff2945f?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "dates": "2024-02-15",
+      "popular": false,
+      "description": "Master advanced JavaScript concepts like closures, promises, and async/await."
+    },
+    {
+      "id": 3,
+      "title": "Blockchain Fundamentals",
+      "courseNumber": "BLK101",
+      "duration": "2 weeks",
+      "availability": "Classroom",
+      "image": "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "dates": "2024-03-01",
+      "popular": true,
+      "description": "Understand the basics of blockchain technology, including consensus algorithms and cryptography."
+    },
+    {
+      "id": 4,
+      "title": "Smart Contract Development with Solidity",
+      "courseNumber": "BLK201",
+      "duration": "3 weeks",
+      "availability": "Distance",
+      "image": "https://images.unsplash.com/photo-1642104704074-907c0698cbd9?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "dates": "2024-03-20",
+      "popular": true,
+      "description": "Learn to write and deploy smart contracts on Ethereum using Solidity."
+    },
+    {
+      "id": 5,
+      "title": "Full-Stack Web Development with Node.js",
+      "courseNumber": "WEB301",
+      "duration": "4 weeks",
+      "availability": "Classroom & Distance",
+      "image": "https://images.unsplash.com/photo-1619410283995-43d9134e7656?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "dates": "2024-04-05",
+      "popular": true,
+      "description": "Build full-stack web applications using Node.js, Express, and MongoDB."
+    },
+    {
+      "id": 6,
+      "title": "Python for Data Science",
+      "courseNumber": "PYT101",
+      "duration": "2 weeks",
+      "availability": "Distance",
+      "image": "https://images.unsplash.com/photo-1495592822108-9e6261896da8?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "dates": "2024-03-10",
+      "popular": false,
+      "description": "Learn Python programming and its applications in data analysis and machine learning."
+    },
+    {
+      "id": 7,
+      "title": "React.js for Frontend Development",
+      "courseNumber": "WEB401",
+      "duration": "3 weeks",
+      "availability": "Classroom",
+      "image": "https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "dates": "2024-03-25",
+      "popular": true,
+      "description": "Build modern, responsive user interfaces using React.js."
+    },
+    {
+      "id": 8,
+      "title": "Blockchain Security and Cryptography",
+      "courseNumber": "BLK301",
+      "duration": "2 weeks",
+      "availability": "Distance",
+      "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "dates": "2024-04-01",
+      "popular": false,
+      "description": "Explore advanced topics in blockchain security, including cryptographic techniques."
+    },
+    {
+      "id": 9,
+      "title": "Building Decentralized Applications (DApps)",
+      "courseNumber": "BLK401",
+      "duration": "4 weeks",
+      "availability": "Classroom & Distance",
+      "image": "https://images.unsplash.com/photo-1664526936959-84bdea9f37fa?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "dates": "2024-04-15",
+      "popular": true,
+      "description": "Learn to build decentralized applications using Ethereum and Web3.js."
+    },
+    {
+      "id": 10,
+      "title": "Advanced Python Programming",
+      "courseNumber": "PYT201",
+      "duration": "3 weeks",
+      "availability": "Distance",
+      "image": "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=2969&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "dates": "2024-04-20",
+      "popular": false,
+      "description": "Dive deep into Python with advanced topics like decorators, generators, and concurrency."
+    },
+    {
+      "id": 11,
+      "title": "Decentralized Finance (DeFi) Essentials",
+      "courseNumber": "BLK501",
+      "duration": "3 weeks",
+      "availability": "Distance",
+      "image": "https://images.unsplash.com/photo-1642239817413-692565098d33?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "dates": "2024-05-01",
+      "popular": true,
+      "description": "Understand the core concepts of DeFi, including lending, borrowing, and yield farming."
+    },
+    {
+      "id": 12,
+      "title": "Introduction to Zero-Knowledge Proofs",
+      "courseNumber": "BLK601",
+      "duration": "2 weeks",
+      "availability": "Classroom",
+      "image": "https://images.unsplash.com/photo-1639322537504-6427a16b0a28?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "dates": "2024-05-15",
+      "popular": false,
+      "description": "Learn the basics of zero-knowledge proofs and their applications in privacy-preserving systems."
+    }
+  ],
+  "users": [],
+  "bookings": []
+}
