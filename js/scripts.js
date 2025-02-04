@@ -25,20 +25,19 @@ fetch('http://localhost:3000/courses')
 
       // Create the course card HTML
       const courseCard = `
-  <div class="col-xl-3 col-md-6">
-    <div class="card ${currentColor} text-white mb-4">
-      <div class="card-body">
-        <h5>${course.title}</h5>
-        <p>Duration: ${course.duration}</p>
-        <p>Availability: ${course.availability}</p>
-      </div>
-      <div class="card-footer d-flex align-items-center justify-content-between">
-        <a class="small text-white stretched-link" href="details.html?id=${course.id}">View Details</a>
-        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-      </div>
-    </div>
-  </div>
-`;
+      <div class="col-xl-3 col-md-6">
+        <div class="card ${currentColor} text-white mb-4">
+          <div class="card-body">
+            <h5>${course.title}</h5>
+            <p>Duration: ${course.duration}</p>
+            <p>Availability: ${course.availability}</p>
+          </div>
+          <div class="card-footer d-flex align-items-center justify-content-between">
+            <a class="small text-white stretched-link" href="details.html?id=${course.id}">View Details</a>
+            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+          </div>
+        </div>
+      </div>`;
 
       // Append the course card to the course list
       courseList.innerHTML += courseCard;
@@ -48,18 +47,39 @@ fetch('http://localhost:3000/courses')
     console.error('Error fetching courses:', error);
   });
 
+// Display logged-in user in sidebar footer
+document.addEventListener('DOMContentLoaded', async () => {
+  const userId = localStorage.getItem('userId');
+  const userDisplay = document.getElementById('loggedInUser');
 
+  // Check if username is stored in localStorage (from registration)
+  const storedUserName = localStorage.getItem('userName');
+  if (storedUserName) {
+    userDisplay.textContent = storedUserName;
+    return;
+  }
 
+  if (!userId) {
+    userDisplay.textContent = 'Guest';
+    return;
+  }
 
-  
+  try {
+    const response = await fetch(`http://localhost:3000/users/${userId}`);
+    if (!response.ok) throw new Error('User not found');
+
+    const user = await response.json();
+    userDisplay.textContent = user.name ? user.name : user.email;
+  } catch (error) {
+    console.error('Error fetching user:', error);
+    userDisplay.textContent = 'Unknown User';
+  }
+});
+
+// Toggle the side navigation
 window.addEventListener('DOMContentLoaded', (event) => {
-  // Toggle the side navigation
   const sidebarToggle = document.body.querySelector('#sidebarToggle');
   if (sidebarToggle) {
-    // Uncomment Below to persist sidebar toggle between refreshes
-    // if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
-    //     document.body.classList.toggle('sb-sidenav-toggled');
-    // }
     sidebarToggle.addEventListener('click', (event) => {
       event.preventDefault();
       document.body.classList.toggle('sb-sidenav-toggled');
