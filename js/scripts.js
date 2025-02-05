@@ -76,6 +76,24 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 });
 
+// Prevent unauthorized access to Checkout page
+document.addEventListener('DOMContentLoaded', () => {
+  const checkoutLink = document.querySelector(
+    ".nav-link[href='checkout.html']"
+  );
+  if (checkoutLink) {
+    checkoutLink.addEventListener('click', (event) => {
+      const userId = localStorage.getItem('userId');
+      if (!userId) {
+        event.preventDefault(); // Stop navigation
+        alert('You must be logged in to access checkout.');
+        localStorage.setItem('redirectAfterLogin', 'checkout.html'); // Store intended page
+        window.location.href = 'login.html'; // Redirect to login
+      }
+    });
+  }
+});
+
 // Toggle the side navigation
 window.addEventListener('DOMContentLoaded', (event) => {
   const sidebarToggle = document.body.querySelector('#sidebarToggle');

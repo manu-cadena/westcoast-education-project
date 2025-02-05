@@ -25,10 +25,19 @@ document.addEventListener('DOMContentLoaded', () => {
       );
 
       if (user) {
+        // Save user details in localStorage
         localStorage.setItem('userId', user.id);
         localStorage.setItem('userEmail', user.email);
         localStorage.setItem('userName', user.name);
-        window.location.href = 'index.html'; // Redirect to dashboard
+
+        // Check if the user was redirected from another page (e.g., checkout.html)
+        const redirectAfterLogin = localStorage.getItem('redirectAfterLogin');
+        if (redirectAfterLogin) {
+          localStorage.removeItem('redirectAfterLogin'); // Remove stored redirect to avoid looping
+          window.location.href = redirectAfterLogin; // Redirect user back to checkout.html or other intended page
+        } else {
+          window.location.href = 'index.html'; // Default redirect to dashboard
+        }
       } else {
         loginError.textContent = 'Invalid email or password.'; // Show message
         loginError.style.display = 'block';

@@ -133,21 +133,6 @@
       "description": "Learn the basics of zero-knowledge proofs and their applications in privacy-preserving systems."
     }
   ],
-  "users": [
-    {
-      "id": "1",
-      "name": "Anna Eklund",
-      "email": "test@example.com",
-      "billingAddress": "Gata 1234",
-      "password": "1234"
-    },
-    {
-      "id": 2,
-      "name": "Massiel López",
-      "email": "test3@example.com",
-      "billingAddress": "Street 1234",
-      "password": "1234"
-    }
-  ],
+  "users": [],
   "bookings": []
 }

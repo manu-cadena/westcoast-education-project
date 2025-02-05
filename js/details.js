@@ -20,6 +20,34 @@ if (courseId) {
       document.getElementById('course-duration').textContent = course.duration;
       document.getElementById('course-availability').textContent =
         course.availability;
+
+      // Handle "Book Now" button click
+      document.getElementById('bookNowButton').addEventListener('click', () => {
+        let selectedCourses =
+          JSON.parse(localStorage.getItem('selectedCourses')) || [];
+
+        if (!selectedCourses.includes(courseId)) {
+          selectedCourses.push(courseId);
+          localStorage.setItem(
+            'selectedCourses',
+            JSON.stringify(selectedCourses)
+          );
+          alert('Course added to checkout!');
+        } else {
+          alert('This course is already selected.');
+        }
+
+        // Check if user is logged in
+        const userId = localStorage.getItem('userId');
+
+        if (!userId) {
+          alert('You must be logged in to proceed to checkout.');
+          localStorage.setItem('redirectAfterLogin', 'checkout.html'); // Store intended page
+          window.location.href = 'login.html'; // Redirect to login
+        } else {
+          window.location.href = 'checkout.html'; // Proceed to checkout if logged in
+        }
+      });
     })
     .catch((error) => {
       console.error('Error:', error);
@@ -30,5 +58,3 @@ if (courseId) {
   document.querySelector('.card-body').innerHTML =
     '<p class="text-danger">No course ID found in the URL. Please select a course.</p>';
 }
-
-
