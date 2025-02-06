@@ -47,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
     .addEventListener('click', saveEditedCourse);
 });
 
-// Fetch and display courses
 async function loadCourses() {
   const response = await fetch(`${API_URL}/courses`);
   const courses = await response.json();
@@ -58,19 +57,19 @@ async function loadCourses() {
   courses.forEach((course) => {
     const row = document.createElement('tr');
     row.innerHTML = `
-            <td><img src="${course.image}" alt="Course Image" width="60"></td>
-            <td>${course.title}</td>
-            <td>${course.courseNumber}</td>
-            <td>${course.duration}</td>
-            <td>${course.availability}</td>
-            <td>${course.dates}</td>
-            <td>${course.cost}</td>
-            <td>${course.description}</td>
-            <td>
-                <button class="btn btn-warning btn-sm edit-btn" data-id="${course.id}"><i class="fas fa-edit"></i></button>
-                <button class="btn btn-danger btn-sm delete-btn" data-id="${course.id}"><i class="fas fa-trash"></i></button>
-            </td>
-        `;
+      <td><img src="${course.image}" alt="Course Image" width="60"></td>
+      <td>${course.title}</td>
+      <td>${course.courseNumber}</td>
+      <td>${course.duration}</td>
+      <td>${course.availability}</td>
+      <td>${course.dates}</td>
+      <td>${course.cost}</td>
+      <td>${course.description}</td>
+      <td>
+        <button class="btn btn-warning btn-sm edit-btn" data-id="${course.id}"><i class="fas fa-edit"></i></button>
+        <button class="btn btn-danger btn-sm delete-btn" data-id="${course.id}"><i class="fas fa-trash"></i></button>
+      </td>
+    `;
     coursesTable.appendChild(row);
   });
 
@@ -78,7 +77,68 @@ async function loadCourses() {
   setupDataTable();
 }
 
-// Delete a course
+async function loadBookings() {
+  const bookingsTable = document.querySelector('#bookingsTable tbody');
+
+  if (!bookingsTable) {
+    console.warn('Bookings table not found. Skipping loadBookings.');
+    return;
+  }
+
+  try {
+    const [bookingsResponse, usersResponse, coursesResponse] =
+      await Promise.all([
+        fetch(`${API_URL}/bookings`),
+        fetch(`${API_URL}/users`),
+        fetch(`${API_URL}/courses`),
+      ]);
+
+    const bookings = await bookingsResponse.json();
+    const users = await usersResponse.json();
+    const courses = await coursesResponse.json();
+
+    bookingsTable.innerHTML = '';
+
+    const courseBookingsMap = new Map();
+
+    bookings.forEach((booking) => {
+      const customer = users.find(
+        (user) => user.id.toString() === booking.userId
+      );
+      const customerName = customer ? customer.name : 'Unknown Customer';
+
+      booking.courses.forEach((courseObj) => {
+        const courseId = courseObj.id.toString(); // Extract course ID
+        const course = courses.find((c) => c.id.toString() === courseId);
+        const courseTitle = course ? course.title : 'Unknown Course';
+
+        if (!courseBookingsMap.has(courseTitle)) {
+          courseBookingsMap.set(courseTitle, new Set()); // Use Set to avoid duplicate names
+        }
+
+        courseBookingsMap.get(courseTitle).add(customerName);
+      });
+    });
+
+    if (courseBookingsMap.size === 0) {
+      bookingsTable.innerHTML = `<tr><td colspan="2" class="text-danger">No courses have been booked yet.</td></tr>`;
+      return;
+    }
+
+    courseBookingsMap.forEach((customers, courseTitle) => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${courseTitle}</td>
+        <td>${Array.from(customers).join(', ')}</td>
+      `;
+      bookingsTable.appendChild(row);
+    });
+  } catch (error) {
+    console.error('Error loading bookings:', error);
+    bookingsTable.innerHTML = `<tr><td colspan="2" class="text-danger">Failed to load course bookings.</td></tr>`;
+  }
+}
+
 async function deleteCourse(courseId) {
   if (confirm('Are you sure you want to delete this course?')) {
     await fetch(`${API_URL}/courses/${courseId}`, { method: 'DELETE' });
@@ -86,26 +146,25 @@ async function deleteCourse(courseId) {
   }
 }
 
-// Edit a course
 async function editCourse(courseId) {
   const response = await fetch(`${API_URL}/courses/${courseId}`);
   const course = await response.json();
 
-  document.getElementById('editTitle').value = course.title;
-  document.getElementById('editCourseNumber').value = course.courseNumber;
-  document.getElementById('editDays').value = course.duration.replace(
-    ' weeks',
-    ''
-  );
-  document.getElementById('editCost').value = course.cost.replace(' kr', '');
-  document.getElementById('editAvailability').value = course.availability;
-  document.getElementById('editDescription').value = course.description;
+  document.getElementById('editTitle').value = course.title || '';
+  document.getElementById('editCourseNumber').value = course.courseNumber || '';
+  document.getElementById('editDays').value = course.duration
+    ? course.duration.replace(' weeks', '')
+    : '';
+  document.getElementById('editCost').value = course.cost
+    ? course.cost.replace(' kr', '')
+    : '';
+  document.getElementById('editAvailability').value = course.availability || '';
+  document.getElementById('editDescription').value = course.description || '';
 
   document.getElementById('saveEditBtn').setAttribute('data-id', course.id);
   new bootstrap.Modal(document.getElementById('editCourseModal')).show();
 }
 
-// Save edited course
 async function saveEditedCourse() {
   const courseId = document
     .getElementById('saveEditBtn')
@@ -126,31 +185,14 @@ async function saveEditedCourse() {
     body: JSON.stringify(updatedCourse),
   });
 
-  new bootstrap.Modal(document.getElementById('editCourseModal')).hide();
+  const editModal = bootstrap.Modal.getInstance(
+    document.getElementById('editCourseModal')
+  );
+  if (editModal) editModal.hide();
+
   loadCourses();
 }
 
-// Fetch and display bookings
-async function loadBookings() {
-  const response = await fetch(`${API_URL}/bookings`);
-  const bookings = await response.json();
-
-  const bookingsTable = document.querySelector('#bookingsTable tbody');
-  bookingsTable.innerHTML = '';
-
-  bookings.forEach((booking) => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-            <td>${booking.customerName}</td>
-            <td>${booking.courseTitle}</td>
-            <td>${booking.email}</td>
-            <td>${booking.phone}</td>
-        `;
-    bookingsTable.appendChild(row);
-  });
-}
-
-// Setup event listeners for edit and delete buttons
 function setupEventListeners() {
   document
     .querySelectorAll('.delete-btn')
@@ -169,7 +211,6 @@ function setupEventListeners() {
     );
 }
 
-// Apply DataTable for responsive table
 function setupDataTable() {
   const tableElement = document.getElementById('datatablesSimple');
   if (!tableElement.classList.contains('dataTable-loaded')) {
@@ -178,7 +219,6 @@ function setupDataTable() {
   }
 }
 
-// Generate a default date for the course (1 week from today)
 function getDefaultDate() {
   const date = new Date();
   date.setDate(date.getDate() + 7);

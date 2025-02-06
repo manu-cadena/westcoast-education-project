@@ -130,6 +130,24 @@
                         </table>
                     </div>
                 </div>
+                <!-- Customer Bookings Section -->
+                <div class="card mb-4">
+                    <div class="card-header"><i class="fas fa-users me-1"></i> Course Bookings</div>
+                    <div class="card-body">
+                        <table id="bookingsTable" class="table table-striped table-bordered">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Course Title</th>
+                                    <th>Booked Customers</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Course bookings will be listed here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
             </main>
 
             <!-- Footer -->
@@ -158,10 +176,26 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <label>Course Title</label>
                     <input type="text" class="form-control mb-2" id="editTitle">
+
+                    <label>Course Number</label>
                     <input type="text" class="form-control mb-2" id="editCourseNumber">
+
+                    <label>Number of Weeks</label>
                     <input type="number" class="form-control mb-2" id="editDays">
+
+                    <label>Course Cost (kr)</label>
                     <input type="number" class="form-control mb-2" id="editCost">
+
+                    <label>Availability</label>
+                    <select class="form-control mb-2" id="editAvailability">
+                        <option value="Classroom">Classroom</option>
+                        <option value="Distance">Distance</option>
+                        <option value="Classroom & Distance">Both</option>
+                    </select>
+
+                    <label>Description</label>
                     <textarea class="form-control mb-2" id="editDescription"></textarea>
                 </div>
                 <div class="modal-footer">
@@ -171,6 +205,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

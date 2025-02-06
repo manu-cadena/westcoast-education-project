@@ -4390,6 +4390,23 @@ fieldset:disabled .btn {
 }
 
 .card {
+  height: 100%; /* Make all cards the same height */
+}
+
+.card-img-top {
+  height: 180px; /* Set a uniform height for images */
+  object-fit: cover; /* Ensure images fit nicely */
+}
+
+.card-body {
+  flex-grow: 1; /* Ensures content stretches evenly */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+.card {
   --bs-card-spacer-y: 1rem;
   --bs-card-spacer-x: 1rem;
   --bs-card-title-spacer-y: 0.5rem;
