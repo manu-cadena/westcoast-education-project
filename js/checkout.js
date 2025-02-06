@@ -1,123 +1,147 @@
-document.addEventListener('DOMContentLoaded', async () => {
-  console.log(
-    'DOM fully loaded! Checking container:',
-    document.getElementById('selectedCoursesContainer')
-  );
+import {
+  getStoredCourses,
+  removeStoredCourse,
+  clearStoredCourses,
+  getLocalStorageItem,
+  logoutUser,
+} from './localStorage.js';
 
+import { fetchCourses, postBooking, fetchUserById } from './fetchData.js';
+import {
+  renderCheckoutCourses,
+  showMessage,
+  updateLoggedInUserDisplay,
+} from './dom.js';
+
+document.addEventListener('DOMContentLoaded', async () => {
   const selectedCoursesContainer = document.getElementById(
     'selectedCoursesContainer'
   );
-  if (!selectedCoursesContainer) {
-    console.error("Error: 'selectedCoursesContainer' not found in HTML.");
-    return;
+  const confirmBookingButton = document.getElementById('confirmBooking');
+  const logoutButton = document.getElementById('logoutButton');
+  const sidebarToggle = document.getElementById('sidebarToggle'); // ✅ Fix Sidebar Toggle
+  const userId = getLocalStorageItem('userId', null);
+
+  // ✅ Fix: Display logged-in user
+  if (userId) {
+    try {
+      const user = await fetchUserById(userId);
+      if (user) updateUserDisplay(user);
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    }
   }
 
-  let selectedCourses =
-    JSON.parse(localStorage.getItem('selectedCourses')) || [];
+  // ✅ Fix: Ensure Logout Button Works
+  if (logoutButton) {
+    logoutButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      logoutUser();
+      window.location.href = 'index.html'; // Redirect to home after logout
+    });
+  }
 
-  console.log('Stored Courses in Local Storage:', selectedCourses);
+  // ✅ Fix: Sidebar Toggle Issue (Without `app.js`)
+  if (sidebarToggle) {
+    sidebarToggle.addEventListener('click', (event) => {
+      event.preventDefault();
+      document.body.classList.toggle('sb-sidenav-toggled');
+      localStorage.setItem(
+        'sb|sidebar-toggle',
+        document.body.classList.contains('sb-sidenav-toggled')
+      );
+    });
+
+    // ✅ Ensure Sidebar State Persists
+    if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
+      document.body.classList.add('sb-sidenav-toggled');
+    }
+  }
+
+  // ✅ Fetch & Display Selected Courses
+  let selectedCourses = getStoredCourses();
 
   if (selectedCourses.length === 0) {
-    selectedCoursesContainer.innerHTML =
-      "<p class='text-danger'>No courses selected.</p>";
-    document.getElementById('confirmBooking').style.display = 'none';
+    showMessage(
+      selectedCoursesContainer,
+      'No courses selected.',
+      'text-danger'
+    );
+    confirmBookingButton.style.display = 'none';
     return;
   }
 
   try {
-    const response = await fetch('http://localhost:3000/courses');
-    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+    const courses = await fetchCourses();
+    if (!courses) throw new Error('Failed to fetch courses.');
 
-    const courses = await response.json();
-    console.log('Fetched Courses from API:', courses);
-
-    let bookedCourses = courses.filter((course) =>
-      selectedCourses.some((selected) => selected.id === course.id)
-    );
-
-    console.log('Matched Courses:', bookedCourses);
+    let bookedCourses = selectedCourses
+      .map((selected) => {
+        const fullCourseDetails = courses.find(
+          (course) => course.id.toString() === selected.id.toString()
+        );
+        if (!fullCourseDetails) return null;
+        return {
+          ...fullCourseDetails,
+          availability: selected.availability,
+          startDate: selected.startDate,
+        };
+      })
+      .filter(Boolean);
 
     function renderCourses() {
-      selectedCoursesContainer.innerHTML = bookedCourses
-        .map((course) => {
-          const selectedData = selectedCourses.find((c) => c.id === course.id);
-
-          return `
-          <div class="col-md-6 col-lg-4 d-flex">
-              <div class="card mb-4 shadow-sm w-100">
-                  <img src="${course.image}" class="card-img-top" alt="${course.title}">
-                  <div class="card-body d-flex flex-column">
-                      <h5 class="card-title">${course.title}</h5>
-                      <p class="card-text flex-grow-1">${course.description}</p>
-                      <p><strong>Duration:</strong> ${course.duration}</p>
-                      <p><strong>Availability:</strong> ${selectedData.availability}</p> <!-- ✅ FIXED -->
-                      <p><strong>Start Date:</strong> ${selectedData.startDate}</p>
-                      <button class="btn btn-danger btn-sm remove-course-btn mt-2" data-id="${course.id}">
-                        <i class="fas fa-trash"></i> Remove
-                      </button>
-                  </div>
-              </div>
-          </div>
-        `;
-        })
-        .join('');
-
-      document.querySelectorAll('.remove-course-btn').forEach((button) => {
-        button.addEventListener('click', (e) => {
-          const courseId = e.target.closest('button').dataset.id;
+      renderCheckoutCourses(
+        bookedCourses,
+        selectedCoursesContainer,
+        (courseId) => {
           bookedCourses = bookedCourses.filter(
             (course) => course.id !== courseId
           );
           selectedCourses = selectedCourses.filter((c) => c.id !== courseId);
-          localStorage.setItem(
-            'selectedCourses',
-            JSON.stringify(selectedCourses)
-          );
+          removeStoredCourse(courseId);
           renderCourses();
-        });
-      });
+        }
+      );
     }
 
     renderCourses();
 
-    document
-      .getElementById('confirmBooking')
-      .addEventListener('click', async () => {
-        const userId = localStorage.getItem('userId');
-        if (!userId) {
-          alert('You must be logged in to book courses.');
-          localStorage.setItem('redirectAfterLogin', 'checkout.html');
-          window.location.href = 'login.html';
-          return;
-        }
+    confirmBookingButton.addEventListener('click', async () => {
+      if (!userId) {
+        alert('You must be logged in to book courses.');
+        localStorage.setItem('redirectAfterLogin', 'checkout.html');
+        window.location.href = 'login.html';
+        return;
+      }
 
-        const booking = {
-          userId,
-          courses: selectedCourses.map((course) => ({
-            id: course.id,
-            availability: course.availability,
-            startDate: course.startDate,
-          })),
-          date: new Date().toISOString(),
-        };
+      const booking = {
+        userId,
+        courses: selectedCourses.map((course) => ({
+          id: course.id,
+          availability: course.availability,
+          startDate: course.startDate,
+        })),
+        date: new Date().toISOString(),
+      };
 
-        const bookingResponse = await fetch('http://localhost:3000/bookings', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(booking),
-        });
-
-        if (bookingResponse.ok) {
-          alert('Booking confirmed!');
-          localStorage.removeItem('selectedCourses');
-          window.location.href = 'confirmation.html';
-        } else {
-          alert('Failed to book courses.');
-        }
-      });
+      const success = await postBooking(booking);
+      if (success) {
+        clearStoredCourses();
+        window.location.href = 'confirmation.html';
+      } else {
+        alert('Failed to book courses.');
+      }
+    });
   } catch (error) {
     console.error('Error fetching courses:', error);
-    selectedCoursesContainer.innerHTML =
-      "<p class='text-danger'>Failed to load selected courses.</p>";
+    showMessage(
+      selectedCoursesContainer,
+      'Failed to load selected courses.',
+      'text-danger'
+    );
   }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateLoggedInUserDisplay();
 });
