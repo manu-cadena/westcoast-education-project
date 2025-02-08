@@ -4,9 +4,9 @@
       "id": "1",
       "title": "Introduction to Web Development",
       "courseNumber": "WEB101",
-      "duration": "4 weeks",
+      "duration": "10 weeks",
       "availability": "Classroom & Distance",
-      "image": "https://images.unsplash.com/photo-1565106430482-8f6e74349ca1?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8V2ViJTIwRGV2ZWxvcG1lbnR8ZW58MHx8MHx8fDI%3D",
+      "image": "assets/img/Introduction to Web Development.avif",
       "dates": "2024-02-01",
       "popular": true,
       "description": "Learn the basics of HTML, CSS, and JavaScript to build your first website.",
@@ -18,7 +18,7 @@
       "courseNumber": "JS201",
       "duration": "2 weeks",
       "availability": "Classroom & Distance",
-      "image": "https://images.unsplash.com/photo-1583484963886-cfe2bff2945f?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "image": "assets/img/Advanced JavaScript.avif",
       "dates": "2024-02-15",
       "popular": false,
       "description": "Master advanced JavaScript concepts like closures, promises, and async/await.",
@@ -30,7 +30,7 @@
       "courseNumber": "BLK101",
       "duration": "2 weeks",
       "availability": "Classroom",
-      "image": "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "image": "assets/img/Blockchain Fundamentals.avif",
       "dates": "2024-03-01",
       "popular": true,
       "description": "Understand the basics of blockchain technology, including consensus algorithms and cryptography.",
@@ -42,7 +42,7 @@
       "courseNumber": "BLK201",
       "duration": "3 weeks",
       "availability": "Distance",
-      "image": "https://images.unsplash.com/photo-1642104704074-907c0698cbd9?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "image": "assets/img/Smart Contract Development with Solidity.avif",
       "dates": "2024-03-20",
       "popular": true,
       "description": "Learn to write and deploy smart contracts on Ethereum using Solidity.",
@@ -54,7 +54,7 @@
       "courseNumber": "WEB301",
       "duration": "4 weeks",
       "availability": "Classroom & Distance",
-      "image": "https://images.unsplash.com/photo-1619410283995-43d9134e7656?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "image": "assets/img/Full-Stack Web Development with Node.avif",
       "dates": "2024-04-05",
       "popular": true,
       "description": "Build full-stack web applications using Node.js, Express, and MongoDB.",
@@ -66,7 +66,7 @@
       "courseNumber": "PYT101",
       "duration": "2 weeks",
       "availability": "Classroom & Distance",
-      "image": "https://images.unsplash.com/photo-1495592822108-9e6261896da8?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "image": "assets/img/Python for Data Science.avif",
       "dates": "2024-03-10",
       "popular": false,
       "description": "Learn Python programming and its applications in data analysis and machine learning.",
@@ -78,7 +78,7 @@
       "courseNumber": "WEB401",
       "duration": "3 weeks",
       "availability": "Classroom",
-      "image": "https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "image": "assets/img/React.js for Frontend Development.avif",
       "dates": "2024-03-25",
       "popular": true,
       "description": "Build modern, responsive user interfaces using React.js.",
@@ -90,7 +90,7 @@
       "courseNumber": "BLK301",
       "duration": "2 weeks",
       "availability": "Distance",
-      "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "image": "assets/img/Blockchain Security and Cryptography.avif",
       "dates": "2024-04-01",
       "popular": false,
       "description": "Explore advanced topics in blockchain security, including cryptographic techniques.",
@@ -102,7 +102,7 @@
       "courseNumber": "BLK401",
       "duration": "4 weeks",
       "availability": "Classroom & Distance",
-      "image": "https://images.unsplash.com/photo-1664526936959-84bdea9f37fa?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "image": "assets/img/Building Decentralized Applications (DApps).avif",
       "dates": "2024-04-15",
       "popular": true,
       "description": "Learn to build decentralized applications using Ethereum and Web3.js.",
@@ -114,7 +114,7 @@
       "courseNumber": "PYT201",
       "duration": "3 weeks",
       "availability": "Distance",
-      "image": "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=2969&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "image": "assets/img/Advanced Python Programming.avif",
       "dates": "2024-04-20",
       "popular": false,
       "description": "Dive deep into Python with advanced topics like decorators, generators, and concurrency.",
@@ -126,7 +126,7 @@
       "courseNumber": "BLK501",
       "duration": "3 weeks",
       "availability": "Distance",
-      "image": "https://images.unsplash.com/photo-1642239817413-692565098d33?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "image": "assets/img/Decentralized Finance (DeFi) Essentials.avif",
       "dates": "2024-05-01",
       "popular": true,
       "description": "Understand the core concepts of DeFi, including lending, borrowing, and yield farming.",
@@ -138,31 +138,33 @@
       "courseNumber": "BLK601",
       "duration": "2 weeks",
       "availability": "Classroom",
-      "image": "https://images.unsplash.com/photo-1639322537504-6427a16b0a28?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "image": "assets/img/Introduction to Zero-Knowledge Proofs.avif",
       "dates": "2024-05-15",
       "popular": false,
       "description": "Learn the basics of zero-knowledge proofs and their applications in privacy-preserving systems.",
       "cost": "5000 kr"
-    },
-    {
-      "id": "1738849171642",
-      "title": "Matematicas",
-      "courseNumber": "MAT03",
-      "duration": "5 weeks",
-      "cost": "3000 kr",
-      "availability": "Distance",
-      "image": "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=3132&auto=format&fit=crop",
-      "dates": "2025-02-13",
-      "popular": false,
-      "description": "Matematicas basicas"
     }
   ],
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Manuel López",
       "email": "test@example.com",
       "billingAddress": "Gata 1234",
+      "password": "123"
+    },
+    {
+      "id": 2,
+      "name": "Andrea Pirlo",
+      "email": "test2@example.com",
+      "billingAddress": "Gata 1234",
+      "password": "123"
+    },
+    {
+      "id": 3,
+      "name": "Roberto Carlos",
+      "email": "test4@example.com",
+      "billingAddress": "Street 1234",
       "password": "123"
     }
   ],
@@ -188,6 +190,134 @@
         }
       ],
       "date": "2025-02-06T23:12:43.875Z"
+    },
+    {
+      "id": "54b6",
+      "userId": 1,
+      "courses": [
+        {
+          "id": "6",
+          "availability": "Distance",
+          "startDate": "2024-03-10"
+        },
+        {
+          "id": "1738916116261",
+          "availability": "Distance",
+          "startDate": "2025-02-14"
+        }
+      ],
+      "date": "2025-02-07T08:16:29.087Z"
+    },
+    {
+      "id": "24e9",
+      "userId": 1,
+      "courses": [
+        {
+          "id": "9",
+          "availability": "Distance",
+          "startDate": "2024-04-15"
+        }
+      ],
+      "date": "2025-02-08T10:48:55.264Z"
+    },
+    {
+      "id": "9032",
+      "userId": 2,
+      "courses": [
+        {
+          "id": "1",
+          "availability": "Distance",
+          "startDate": "2024-02-01"
+        },
+        {
+          "id": "3",
+          "availability": "Classroom",
+          "startDate": "2024-03-01"
+        }
+      ],
+      "date": "2025-02-08T11:07:24.479Z"
+    },
+    {
+      "id": "2430",
+      "userId": 1,
+      "courses": [
+        {
+          "id": "1739011811086",
+          "availability": "Distance",
+          "startDate": "2025-02-15"
+        }
+      ],
+      "date": "2025-02-08T13:08:19.794Z"
+    },
+    {
+      "id": "21c0",
+      "userId": 1,
+      "courses": [
+        {
+          "id": "1739020343935",
+          "availability": "Distance",
+          "startDate": "2025-02-15"
+        }
+      ],
+      "date": "2025-02-08T13:13:31.241Z"
+    },
+    {
+      "id": "ac23",
+      "userId": 3,
+      "courses": [
+        {
+          "id": "1",
+          "availability": "Classroom",
+          "startDate": "2024-02-01"
+        },
+        {
+          "id": "1739020343935",
+          "availability": "Distance",
+          "startDate": "2025-02-15"
+        }
+      ],
+      "date": "2025-02-08T13:15:36.666Z"
+    },
+    {
+      "id": "2f1a",
+      "userId": 1,
+      "courses": [
+        {
+          "id": "12",
+          "availability": "Classroom",
+          "startDate": "2024-05-15"
+        }
+      ],
+      "date": "2025-02-08T13:26:57.921Z"
+    },
+    {
+      "id": "b0a5",
+      "userId": 2,
+      "courses": [
+        {
+          "id": "1739020343935",
+          "availability": "Distance",
+          "startDate": "2025-02-15"
+        },
+        {
+          "id": "4",
+          "availability": "Distance",
+          "startDate": "2024-03-20"
+        }
+      ],
+      "date": "2025-02-08T13:28:08.592Z"
+    },
+    {
+      "id": "5cdf",
+      "userId": 2,
+      "courses": [
+        {
+          "id": "1739021778558",
+          "availability": "Distance",
+          "startDate": "2025-02-15"
+        }
+      ],
+      "date": "2025-02-08T13:36:34.549Z"
     }
   ]
 }
