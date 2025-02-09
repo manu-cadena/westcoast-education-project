@@ -61,11 +61,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     bookNowButton.addEventListener('click', () => {
       if (!userId) {
         alert('You must be logged in to book a course.');
-        setLocalStorageItem(
+        localStorage.setItem(
           'redirectAfterLogin',
           `details.html?id=${courseId}`
         );
-        window.location.href = 'login.html';
+        window.location.href = 'login.html'; // Redirect user to login
         return;
       }
 

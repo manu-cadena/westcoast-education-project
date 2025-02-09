@@ -33,10 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Check if the user was redirected from another page (e.g., checkout.html)
         const redirectAfterLogin = localStorage.getItem('redirectAfterLogin');
         if (redirectAfterLogin) {
-          localStorage.removeItem('redirectAfterLogin'); // Remove stored redirect to avoid looping
-          window.location.href = redirectAfterLogin; // Redirect user back to checkout.html or other intended page
+          localStorage.removeItem('redirectAfterLogin'); // Remove stored redirect
+          window.location.href = redirectAfterLogin; // ✅ Go back to the correct page
         } else {
-          window.location.href = 'index.html'; // Default redirect to dashboard
+          window.location.href = 'index.html'; // ✅ Only redirect to index if no stored redirect
         }
       } else {
         loginError.textContent = 'Invalid email or password.'; // Show message

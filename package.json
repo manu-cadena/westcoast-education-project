@@ -4,7 +4,9 @@
   "description": "A simple JSON server for a fictional education website.",
   "main": "index.js",
   "scripts": {
-    "server": "npx json-server --watch courses.json"
+    "server": "npx json-server --watch courses.json",
+    "test": "vitest",
+    "test:watch": "vitest --watch"
   },
   "author": "Manuel López",
   "license": "ISC",
@@ -12,6 +14,7 @@
     "json-server": "^1.0.0-beta.3"
   },
   "devDependencies": {
+    "@types/node": "^22.13.1",
     "vitest": "^3.0.5"
   }
 }
